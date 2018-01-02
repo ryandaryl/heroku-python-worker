@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request
 from rq import Queue
 from worker import conn
 from utils import count_words_at_url
@@ -9,8 +9,12 @@ q = Queue(connection=conn)
 
 @app.route("/")
 def hello():
-    new_job = q.enqueue(count_words_at_url, 'http://heroku.com')
-    return str(new_job.result)
+    found_job = request.args.get('job')
+    if found_job:
+        return str(q.fetch_job(found_job).result)
+    else:
+        new_job = q.enqueue(count_words_at_url, 'http://heroku.com')
+        return new_job.id
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

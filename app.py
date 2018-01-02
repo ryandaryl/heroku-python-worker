@@ -9,8 +9,8 @@ q = Queue(connection=conn)
 
 @app.route("/")
 def hello():
-    result = q.enqueue(count_words_at_url, 'http://heroku.com')
-    return result
+    new_job = q.enqueue(count_words_at_url, 'http://heroku.com')
+    return str(new_job.result)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

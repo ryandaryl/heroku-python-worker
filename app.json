@@ -1,0 +1,7 @@
+{
+  "name": "Minimal Heroku Python",
+  "description": "Minimal Python Flask app from the Heroku blog",
+  "repository": "https://github.com/rydamil60000g/heroku-python-minimal",
+  "logo": "http://www.unixstickers.com/image/data/stickers/python/python.sh.png",
+  "keywords": ["python", "flask", "beginner", "minimal"]
+}

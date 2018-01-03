@@ -8,14 +8,16 @@ app = Flask(__name__)
 q = Queue(connection=conn)
 
 def get_status(job):
-    return {
+    status = {
         'id': job.id,
         'result': job.result,
         'status': 'failed' if job.is_failed else 'pending' if job.result == None else 'completed'
     }
+    status.update(job.meta)
+    return status
 
 @app.route("/")
-def hello():
+def handle_job():
     query_id = request.args.get('job')
     if query_id:
         found_job = q.fetch_job(query_id)

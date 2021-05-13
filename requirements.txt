@@ -1,3 +1,4 @@
-Flask==0.12
+Flask
 rq
 requests
+honcho

@@ -16,7 +16,7 @@ def get_status(job):
     status.update(job.meta)
     return status
 
-@app.route("/")
+@app.route("/data")
 def handle_job():
     query_id = request.args.get('job')
     if query_id:
@@ -29,6 +29,10 @@ def handle_job():
         new_job = q.enqueue(count_words_at_url, 'http://heroku.com')
         output = get_status(new_job)
     return jsonify(output)
+
+@app.route("/login")
+def login_page():
+    return 'This is the login page.'
 
 if __name__ == "__main__":
     app.run(

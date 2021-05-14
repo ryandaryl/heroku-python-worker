@@ -9,3 +9,20 @@ I've also added app.json and this readme so you can:
 By clicking the button below.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Run locally
+
+Build the Dockerfile, then run an interactive session.
+
+Start the Redis server:
+
+```
+redis-server &
+```
+
+Start the web and worker processes:
+
+```
+GUNICORN_CMD_ARGS="--workers=1" honcho start --concurrency="web=1,worker=1"
+```
+

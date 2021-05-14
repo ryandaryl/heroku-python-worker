@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from rq import Queue
 from worker import conn
 from utils import count_words_at_url
+import datetime
 
 app = Flask(__name__)
 q = Queue(connection=conn)
@@ -32,7 +33,7 @@ def handle_job():
 
 @app.route("/login")
 def login_page():
-    return 'This is the login page.'
+    return f'This is the login page. The current time is {datetime.datetime.now()}'
 
 if __name__ == "__main__":
     app.run(

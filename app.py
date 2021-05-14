@@ -35,6 +35,10 @@ def handle_job():
 def login_page():
     return f'This is the login page. The current time is {datetime.datetime.now()}'
 
+@app.route("/page<page_id>")
+def other_page(page_id):
+    return f'This is page {page_id}. The current time is {datetime.datetime.now()}'
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get('HOST', '0.0.0.0'),

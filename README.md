@@ -23,6 +23,6 @@ redis-server &
 Start the web and worker processes:
 
 ```
-GUNICORN_CMD_ARGS="--workers=1" honcho start --concurrency="web=1,worker=1"
+GUNICORN_CMD_ARGS="--timeout=120 --workers=1" honcho start --concurrency="web=1"
 ```
 
